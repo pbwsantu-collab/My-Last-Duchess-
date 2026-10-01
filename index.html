@@ -1,1 +1,204 @@
-<!DOCTYPE html><html><body><p>Loading full content...</p></body></html>
+ <!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#7a1f2b">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
+<title>My Last Duchess · Class XI</title>
+<style>
+:root{--wall:#e8ede6;--ink:#1d2320;--curtain:#7a1f2b;--bronze:#8a6a2f;--card:#f8faf6;--line:#c9d2c4}
+@media(prefers-color-scheme:dark){:root{--wall:#1b211e;--ink:#e6ebe3;--card:#242c28;--line:#3a463f;--bronze:#d2ac62}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--wall);color:var(--ink);font:17px/1.7 Georgia,"Noto Serif Bengali","Noto Sans Bengali",serif}
+header{background:linear-gradient(90deg,#4f0f19,#7a1f2b 20%,#5c1520 38%,#7a1f2b 60%,#4f0f19 80%,#7a1f2b);color:#f6e9d7;padding:28px 18px 18px;text-align:center}
+h1{margin:0;font-size:2rem;letter-spacing:.02em}header p{margin:4px 0 0;opacity:.85;font-size:.95rem}
+nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:2px solid var(--curtain);display:flex;gap:4px;overflow-x:auto;padding:6px;align-items:center}
+nav button{flex:none;border:0;background:none;color:var(--ink);font:inherit;font-size:.92rem;padding:8px 12px;border-radius:6px;cursor:pointer}
+nav button.on{background:var(--curtain);color:#fff}
+nav .lang{margin-left:auto;border:1px solid var(--bronze);color:var(--bronze);font-weight:bold}
+button:focus-visible{outline:3px solid var(--bronze);outline-offset:2px}
+main{max-width:760px;margin:0 auto;padding:16px}
+.seg{background:var(--card);border-left:4px solid var(--curtain);padding:10px 14px;margin:14px 0;border-radius:4px}
+.ln{display:block}.w{cursor:pointer;border-bottom:1px dotted var(--bronze)}.w:hover,.w.sel{background:#d9b86a55}
+.mean{margin:8px 0 0;padding-top:8px;border-top:1px solid var(--line);font-size:.93rem}
+.bn{font-family:"Noto Sans Bengali","Kalpurush",sans-serif}
+.tools{display:flex;gap:10px;align-items:center;font-size:.9rem}
+h2{color:var(--curtain);margin:22px 0 6px}h3{margin:16px 0 2px;color:var(--bronze)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 14px;margin:10px 0}
+#sheet{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:3px solid var(--curtain);padding:14px 18px 22px;transform:translateY(110%);transition:transform .2s;z-index:9}
+#sheet.open{transform:none}#sheet b{font-size:1.2rem;color:var(--curtain)}
+@media(prefers-reduced-motion:reduce){#sheet{transition:none}}
+.voice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 6px}
+.voice-bar button{border:1px solid var(--curtain);background:var(--card);color:var(--curtain);font:inherit;font-size:.9rem;padding:6px 12px;border-radius:6px;cursor:pointer}
+.voice-bar button:hover{background:var(--curtain);color:#fff}
+.voice-bar button.active{background:var(--curtain);color:#fff}
+.voice-bar select{font:inherit;font-size:.85rem;padding:4px 8px;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.ln.speaking{background:#d9b86a44;border-radius:3px;transition:background .15s}
+.seg.speaking{box-shadow:0 0 0 2px var(--bronze)}
+
+</style></head><body>
+<header><h1 id="ttl"></h1><p id="sub"></p></header>
+<nav id="nav"></nav>
+<main id="app"></main>
+<div id="sheet" role="dialog" aria-live="polite"></div>
+<script>
+const L=["That's my last Duchess painted on the wall,","Looking as if she were alive. I call","That piece a wonder, now: Frà Pandolf's hands","Worked busily a day, and there she stands.","Will 't please you sit and look at her? I said","'Frà Pandolf' by design, for never read","Strangers like you that pictured countenance","The depth and passion of its earnest glance,","But to myself they turned (since none puts by","The curtain I have drawn for you, but I)","And seemed as they would ask me, if they durst,","How such a glance came there; so, not the first","Are you to turn and ask thus. Sir, 't was not","Her husband's presence only, called that spot","Of joy into the Duchess' cheek: perhaps","Frà Pandolf chanced to say, 'Her mantle laps","Over my lady's wrist too much,' or 'Paint","Must never hope to reproduce the faint","Half-flush that dies along her throat:' such stuff","Was courtesy, she thought, and cause enough","For calling up that spot of joy. She had","A heart-how shall I say?-too soon made glad,","Too easily impressed; she liked whate'er","She looked on, and her looks went everywhere.","Sir, 't was all one! My favour at her breast,","The dropping of the daylight in the West,","The bough of cherries some officious fool","Broke in the orchard for her, the white mule","She rode with round the terrace-all and each","Would draw from her alike the approving speech,","Or blush, at least. She thanked men,-good! but thanked","Somehow-I know not how-as if she ranked","My gift of a nine-hundred-years-old name","With anybody's gift. Who'd stoop to blame","This sort of trifling? Even had you skill","In speech-(which I have not)-to make your will","Quite clear to such an one, and say, 'Just this","Or that in you disgusts me; here you miss,","Or there exceed the mark'-and if she let","Herself be lessoned so, nor plainly set","Her wits to yours, forsooth, and made excuse,","-E'en then would be some stooping; and I choose","Never to stoop. Oh, sir, she smiled, no doubt,","Whene'er I passed her; but who passed without","Much the same smile? This grew; I gave commands;","Then all smiles stopped together. There she stands","As if alive. Will 't please you rise? We'll meet","The company below then. I repeat,","The Count your master's known munificence","Is ample warrant that no just pretence","Of mine for dowry will be disallowed;","Though his fair daughter's self, as I avowed","At starting, is my object. Nay, we'll go","Together down, sir. Notice Neptune, though,","Taming a sea-horse, thought a rarity,","Which Claus of Innsbruck cast in bronze for me!"];
+const SEG=[
+[0,3,"That is my late wife's portrait on the wall; she looks alive. I call it a wonder: Fra Pandolf worked busily for a day, and there she stands.","ওই দেয়ালে আঁকা ছবিটাই আমার প্রয়াত স্ত্রী, আগের ডাচেস; দেখলে মনে হয় সে জীবন্ত। আমি একে বিস্ময়কর বলি—ফ্রা প্যান্ডল্ফের হাত একদিন ব্যস্তভাবে কাজ করেছিল, আর সে এখন এখানে দাঁড়িয়ে আছে।"],
+[4,9,"Please sit and look. I named 'Fra Pandolf' on purpose: strangers who see that earnest, passionate glance always turn to me, since only I draw the curtain.","দয়া করে বসে দেখুন। আমি ইচ্ছে করেই 'ফ্রা প্যান্ডল্ফ' নামটা বললাম—আপনার মতো অচেনা কেউ ছবির আন্তরিক ও আবেগভরা দৃষ্টি দেখলে আমার দিকেই ফিরে তাকায়, কারণ এই পর্দা আমি ছাড়া কেউ সরায় না।"],
+[10,12,"They seem to ask, if they dared, how such a glance came there. You are not the first to ask.","সাহস থাকলে তারা জিজ্ঞেস করত, ওই দৃষ্টি ছবিতে এল কীভাবে। আপনিই প্রথম নন যিনি এমন প্রশ্ন করছেন।"],
+[13,20,"It was not only her husband's presence that brought joy to her cheek. The painter might say her mantle covers her wrist too much, or that paint cannot capture the faint blush at her throat; she took such talk as courtesy and blushed.","শুধু স্বামীর উপস্থিতিই তার গালে আনন্দের আভা আনত না। চিত্রকর হয়তো বলতেন, 'আলখাল্লা কব্জি বেশি ঢেকেছে' বা 'গলার হালকা লালিমা রঙে ধরা অসম্ভব'—এসব ফাঁকা কথাকে সে ভদ্রতা ভাবত, তাতেই লাল হয়ে উঠত।"],
+[21,23,"She had a heart too quickly made glad and easily impressed; she liked whatever she looked at, and her glances went everywhere.","তার হৃদয় ছিল—কীভাবে বলি—বড্ড তাড়াতাড়ি খুশি হওয়া, সহজে মুগ্ধ হওয়া; যা দেখত তাই ভালো লাগত, দৃষ্টি যেত সর্বত্র।"],
+[24,29,"To her all was the same: my jewel at her breast, the sunset, a bough of cherries from a foolish helper, her white mule. Each drew the same approving words or blush.","তার কাছে সবই সমান ছিল: বুকে আমার দেওয়া অলংকার, সূর্যাস্ত, অতি-উৎসাহী বোকার আনা চেরির ডাল, সাদা খচ্চর—সবই তার কাছ থেকে একই প্রশংসা বা লজ্জার আভা আদায় করত।"],
+[30,33,"She thanked men, but as if she ranked my nine-hundred-year-old name with anybody's gift.","সে মানুষকে ধন্যবাদ দিত, কিন্তু এমনভাবে যেন আমার নশো বছরের পুরোনো বংশমর্যাদার উপহারকে সে যে কারও উপহারের সমান ধরত।"],
+[34,41,"Who would stoop to blame such trifling? Even if I could tell her what displeased me and she accepted it without excuse, that would still be stooping, and I never stoop.","এমন তুচ্ছ ব্যাপারে দোষ দিতে কে নিজেকে নিচু করবে? ধরুন আমি বলতে পারতাম কী আমাকে বিরক্ত করছে, আর সে অজুহাত ছাড়া মেনে নিত—তবু তা নিজেকে নিচু করা হতো; আমি কখনও নিচু হই না।"],
+[42,45,"She smiled when I passed, but so she did at everyone. It grew; I gave commands; then all smiles stopped. There she stands, as if alive.","সে হাসত ঠিকই, আমি পাশ দিয়ে গেলে; কিন্তু অন্য সবার প্রতিও একই হাসি। এটা বাড়ল; আমি আদেশ দিলাম; তখন সব হাসি একসঙ্গে থেমে গেল। সে ওখানে দাঁড়িয়ে আছে, যেন জীবন্ত।"],
+[46,47,"Please rise; let us join the company below.","দয়া করে উঠুন; নিচে অতিথিদের কাছে যাই।"],
+[48,51,"Your master the Count's known generosity assures me that my just claim for a dowry will not be refused, though, as I said at the start, his daughter herself is my object.","আপনার প্রভু কাউন্টের সুপরিচিত বদান্যতা নিশ্চিত করে যে যৌতুকের জন্য আমার ন্যায্য দাবি অগ্রাহ্য হবে না; যদিও শুরুতেই বলেছি, তাঁর সুন্দরী কন্যাই আমার আসল লক্ষ্য।"],
+[52,55,"No, let us go down together. Notice Neptune taming a sea-horse, a rarity Claus of Innsbruck cast in bronze for me.","না, একসঙ্গে নিচে যাই। দেখুন নেপচুন সমুদ্রঘোড়া বশ করছেন—এক দুর্লভ শিল্প, ইন্সব্রুকের ক্লাউস আমার জন্য ব্রোঞ্জে ঢেলেছে।"]];
+const E={};"countenance=face or facial expression|earnest=serious and sincere|glance=a quick look|durst=dared|mantle=a loose cloak|laps=covers partly|faint=slight, barely visible|half-flush=a partial blush|stuff=nonsense, idle talk|courtesy=polite behaviour|impressed=pleased, moved|whate'er=whatever|favour=a gift, here jewellery|officious=over-eager to help|bough=a tree branch|mule=an animal born of a donkey and a horse|terrace=a raised flat area|approving=showing approval|ranked=placed on the same level|stoop=lower oneself|trifling=unimportant behaviour|lessoned=taught, corrected|wits=intelligence|forsooth=in truth (said mockingly)|e'en=even|whene'er=whenever|munificence=great generosity|ample=more than enough|warrant=guarantee|pretence=claim|dowry=money or property a bride brings|disallowed=refused|avowed=openly declared|nay=no|rarity=a rare, valuable thing|cast=shaped in molten metal|bronze=a metal alloy of copper and tin|taming=bringing under control|neptune=Roman god of the sea|innsbruck=a city in Austria|ferrara=an Italian city ruled by the Duke|pandolf=an imaginary painter, a monk|frà=Brother, title of a monk|curtain=cloth covering the portrait|drawn=pulled across|commands=orders|blush=turn red with feeling|passion=strong feeling|alike=in the same way|disgusts=offends strongly|exceed=go beyond|dies=fades away|object=aim, purpose|company=guests|repeat=say again|glad=happy|breast=chest|orchard=a garden of fruit trees|wonder=something amazing|busily=in a busy way|design=purpose|pictured=painted|presence=being present|spot=a patch of colour|cheek=side of the face|throat=front of the neck|reproduce=copy|cause=reason|calling=bringing out|heart=feelings, nature|easily=without effort|everywhere=in all places|dropping=sinking (of the sun)|speech=words|somehow=in some way|gift=present|name=family title and honour|blame=find fault|skill=ability|disgusts=offends|mark=limit|excuse=a reason given to avoid blame|choose=decide|grew=increased|stopped=ended|master=employer, lord|daughter=a female child|notice=look at".split("|").forEach(p=>{const i=p.indexOf("=");E[p.slice(0,i)]=p.slice(i+1)});
+const D={};("duchess=ডাচেস, ডিউকের স্ত্রী|painted=আঁকা|wall=দেয়াল|alive=জীবন্ত|wonder=বিস্ময়কর বস্তু|pandolf=ফ্রা প্যান্ডল্ফ, কাল্পনিক চিত্রকর|frà=ফ্রা (সন্ন্যাসীর উপাধি)|hands=হাত|worked=কাজ করেছিল|busily=ব্যস্তভাবে|day=একদিন|stands=দাঁড়িয়ে আছে|please=অনুগ্রহ করে|sit=বসুন|look=দেখুন|design=উদ্দেশ্য; by design = ইচ্ছাকৃতভাবে|read=পড়ে নিয়েছে|strangers=অচেনা লোক|pictured=চিত্রিত|countenance=মুখাবয়ব|depth=গভীরতা|passion=আবেগ|earnest=আন্তরিক|glance=দৃষ্টি|turned=ঘুরে তাকাল|curtain=পর্দা|drawn=টেনে দেওয়া|seemed=মনে হল|ask=জিজ্ঞেস করা|durst=সাহস করত (dared)|thus=এভাবে|husband=স্বামী|presence=উপস্থিতি|called=ডেকে আনত|spot=আভা, দাগ|joy=আনন্দ|cheek=গাল|perhaps=হয়তো|chanced=ঘটনাচক্রে বলল|mantle=ঢিলা আলখাল্লা|laps=ঢেকে যায়|lady=মহিলা, স্ত্রী|wrist=কব্জি|paint=রং|reproduce=পুনরায় ফুটিয়ে তোলা|faint=অস্পষ্ট|half-flush=অর্ধেক লালিমা|dies=মিলিয়ে যায়|throat=গলা|stuff=বাজে কথা|courtesy=শিষ্টাচার|cause=কারণ|calling=ডেকে আনা|heart=হৃদয়|glad=খুশি|easily=সহজে|impressed=মুগ্ধ|liked=পছন্দ করত|whate'er=যা কিছু|looks=দৃষ্টি|everywhere=সর্বত্র|favour=উপহার (গহনা)|breast=বুক|dropping=ডুবে যাওয়া|daylight=দিনের আলো|west=পশ্চিম|bough=গাছের ডাল|cherries=চেরি ফল|officious=অতি-উৎসাহী|fool=বোকা|broke=ভেঙে আনল|orchard=ফলের বাগান|mule=খচ্চর|rode=চড়ত|terrace=চত্বর|draw=আদায় করা|alike=সমানভাবে|approving=অনুমোদনসূচক|speech=কথা|blush=লজ্জায় লাল হওয়া|thanked=ধন্যবাদ দিত|somehow=কোনোভাবে|ranked=সমান মর্যাদা দিত|gift=উপহার|nine-hundred-years-old=নশো বছরের পুরোনো|name=বংশমর্যাদা|anybody's=যে কারও|stoop=নিজেকে নিচু করা|blame=দোষারোপ|trifling=তুচ্ছ আচরণ|skill=দক্ষতা|will=ইচ্ছা|clear=স্পষ্ট|disgusts=বিরক্ত করে|miss=ভুল করা|exceed=সীমা ছাড়ানো|mark=সীমা|lessoned=শিক্ষা পেয়ে|wits=বুদ্ধি|forsooth=সত্যি বলতে (ব্যঙ্গে)|excuse=অজুহাত|e'en=even (এমনকি)|choose=বেছে নিই|smiled=হাসত|doubt=সন্দেহ|whene'er=যখনই|passed=পাশ দিয়ে যেতাম|grew=বেড়ে উঠল|commands=আদেশ|stopped=থেমে গেল|together=একসঙ্গে|rise=উঠুন|company=অতিথিরা|repeat=আবার বলছি|count=কাউন্ট, অভিজাত|master=প্রভু|munificence=বদান্যতা|ample=যথেষ্ট|warrant=নিশ্চয়তা|pretence=দাবি|dowry=যৌতুক|disallowed=অগ্রাহ্য|fair=সুন্দরী|daughter=কন্যা|avowed=ঘোষণা করেছি|object=লক্ষ্য|nay=না|notice=লক্ষ করুন|neptune=রোমান সমুদ্রদেবতা|taming=বশ করা|sea-horse=সামুদ্রিক ঘোড়া|rarity=দুর্লভ বস্তু|claus=ক্লাউস, কাল্পনিক ভাস্কর|innsbruck=অস্ট্রিয়ার শহর|cast=ঢালাই করল|bronze=ব্রোঞ্জ|ferrara=ইতালির শহর; ডিউকের রাজ্য|that's=ওটা হল|my=আমার|last=সদ্য প্রয়াত (আগের)|on=উপর|the=(নির্দিষ্টবাচক)|looking=দেখতে|as=যেন|if=যদি|she=সে (নারী)|were=হত|i=আমি|call=বলি|that=ওই|piece=শিল্পকর্ম|now=এখন|and=এবং|there=ওখানে|will=কি (প্রশ্নে)|you=আপনি|at=দিকে|her=তার|said=বললাম|by=দ্বারা|for=জন্য|never=কখনও না|like=মতো|of=এর|its=এর|but=কিন্তু|to=প্রতি|myself=আমার নিজের|they=তারা|since=যেহেতু|none=কেউ না|puts=রাখে|by=সরিয়ে|me=আমাকে|how=কীভাবে|such=এমন|came=এল|so=তাই|not=না|first=প্রথম|are=হন|sir=মহাশয়|only=শুধু|into=মধ্যে|or=অথবা|too=অতিরিক্ত|much=বেশি|must=অবশ্যই|hope=আশা|along=বরাবর|was=ছিল|she=সে|thought=ভাবত|enough=যথেষ্ট|had=ছিল|a=একটি|shall=করব|say=বলি|soon=শীঘ্র|made=করা|looked=তাকাত|went=গেল|all=সব|one=এক|some=কোনো|in=মধ্যে|with=সঙ্গে|round=চারদিকে|each=প্রত্যেকে|would=হত|from=থেকে|at=এ|least=অন্তত|men=পুরুষেরা|good=ভালো|know=জানি|anybody=যে কেউ|who'd=কে করবে|this=এই|sort=ধরন|even=এমনকি|had=যদি থাকত|make=করা|such=এমন|just=শুধু|here=এখানে|there=ওখানে|if=যদি|let=অনুমতি দিত|herself=নিজে|be=হওয়া|so=এভাবে|nor=না|plainly=স্পষ্টভাবে|set=মেলানো|yours=আপনার|made=করত|then=তখন|would=হত|some=কিছুটা|oh=ওহ|whene'er=যখনই|without=ছাড়া|same=একই|gave=দিলাম|we'll=আমরা যাব|meet=মিলব|below=নিচে|then=তাহলে|your=আপনার|known=সুপরিচিত|no=কোনো|just=ন্যায্য|of=এর|will=হবে|though=যদিও|his=তাঁর|self=নিজে|is=হল|starting=শুরু|go=যাই|down=নিচে|which=যা|thought=বিবেচিত|taming=বশ করছেন|more=আরও|who=যে|t=it এর সংক্ষেপ ('t was = it was)|have=আছে|turn=ঘুরে তাকানো|over=উপর দিয়ে|up=উপরে|say=বলা|white=সাদা|men=পুরুষেরা|somehow=কোনোভাবে|how=কীভাবে|quite=সম্পূর্ণ|an=একটি|mark=সীমা|stooping=নিজেকে নিচু করা|smile=হাসি|smiles=হাসি|mine=আমার|terrace=চত্বর|heart=হৃদয়|speech=কথা, বাক্‌শক্তি|too=অতিরিক্ত|about=সম্পর্কে|has=আছে|do=করা|did=করল|can=পারা|may=পারে|than=চেয়ে|when=যখন|what=কী|where=কোথায়|why=কেন|yes=হ্যাঁ").split("|").forEach(p=>{const i=p.indexOf("=");D[p.slice(0,i)]=p.slice(i+1)});
+const TABS={poem:["Poem","কবিতা"],analysis:["Critical Analysis","সমালোচনা"],tech:["Technique","শিল্পকৌশল"],rhet:["Rhetoric & Prosody","অলংকার ও ছন্দ"],hist:["Background","পটভূমি"],notes:["Textbook Notes","পাঠ্য টীকা"],qa:["Questions","প্রশ্নোত্তর"]};
+const A=(e,b)=>({e,b});
+const AN=[A("Theme: power and possession","মূলভাব: ক্ষমতা ও অধিকারবোধ")];
+const CONTENT={
+analysis:[
+["The Duke's self-portrait","ডিউকের আত্মপ্রকাশ","The Duke means to impress the envoy, yet his own words expose jealousy, pride in his nine-hundred-year-old name and need to control. He resented the Duchess's equal warmth to all, and 'I gave commands' admits he had her killed. The poem is a study of tyranny dressed as refinement.","ডিউক দূতকে প্রভাবিত করতে চায়, অথচ নিজের কথাতেই ঈর্ষা, বংশগৌরব ও নিয়ন্ত্রণ-লিপ্সা প্রকাশ করে ফেলে। ডাচেসের সবার প্রতি সমান উষ্ণতা তার অসহ্য ছিল; 'I gave commands' বলে সে খুনের আদেশ স্বীকার করে। কবিতাটি ভদ্রতার মোড়কে স্বৈরাচারের চিত্র।"],
+["The Duchess","ডাচেস","Warm, spontaneous and appreciative of simple things: cherries, sunsets, a mule. She is never heard directly, so we see her only through her murderer, which makes her innocence more moving.","উষ্ণ, সহজ, ছোট ছোট জিনিসে মুগ্ধ: চেরি, সূর্যাস্ত, খচ্চর। সে নিজে কথা বলে না; আমরা তাকে দেখি তার হত্যাকারীর চোখে, তাই তার নির্দোষতা আরও মর্মস্পর্শী।"],
+["Art and objectification","শিল্প ও বস্তুকরণ","The living woman becomes a painting behind a curtain only he opens. Neptune taming a sea-horse repeats the idea: dominance over a living creature, preserved as art. The final lines show the marriage deal is another possession.","জীবন্ত নারী হয়ে গেছে পর্দার আড়ালের ছবি, যা শুধু ডিউকই খোলে। সমুদ্রঘোড়া বশ-করা নেপচুন একই ইঙ্গিত দেয়—জীবন্ত প্রাণীর উপর কর্তৃত্ব, শিল্পে ধরে রাখা। শেষে বোঝা যায় নতুন বিয়েও আরেকটি অধিকার-লাভ।"]],
+tech:[
+["Dramatic monologue","নাট্যস্বগতোক্তি","One speaker, a silent listener (the envoy), a definite setting (Ferrara gallery), and a speaker who reveals himself unintentionally.","একজন বক্তা, নীরব শ্রোতা (দূত), নির্দিষ্ট স্থান (ফেরারার প্রাসাদ) এবং এমন বক্তা যে অজান্তে নিজের চরিত্র ফাঁস করে।"],
+["Dramatic irony","নাট্য-বিদ্রূপ","The Duke thinks he sounds refined; the reader sees a murderer. The envoy's reaction is left to our imagination.","ডিউক ভাবে সে সুরুচিসম্পন্ন; পাঠক দেখে এক খুনিকে। দূতের প্রতিক্রিয়া পাঠকের কল্পনায় রাখা হয়েছে।"],
+["Symbolism","প্রতীক","Portrait = frozen, controlled life; curtain = secrecy and power; Neptune = domination; 'smiles' = life and freedom.","ছবি = বন্দি, নিয়ন্ত্রিত জীবন; পর্দা = গোপনতা ও ক্ষমতা; নেপচুন = আধিপত্য; 'হাসি' = জীবন ও স্বাধীনতা।"],
+["Structure","গঠন","The poem moves from art to memory to confession to the new marriage, ending with a casual remark about a sculpture that echoes the murder.","কবিতা এগোয় শিল্প থেকে স্মৃতি, স্বীকারোক্তি ও নতুন বিয়ের দিকে; শেষে ভাস্কর্যের উল্লেখে খুনের প্রতিধ্বনি।"]],
+rhet:[
+["Irony and euphemism","বিদ্রূপ ও মৃদুভাষা","'I gave commands; then all smiles stopped' is a euphemism for murder; 'forsooth' mocks the Duchess's supposed excuses.","'I gave commands; then all smiles stopped'—খুনের মৃদু প্রকাশ; 'forsooth' ব্যঙ্গে ডাচেসের অজুহাতকে বিদ্রূপ করে।"],
+["False modesty and rhetorical question","ছদ্মবিনয় ও প্রশ্নালংকার","'Even had you skill in speech (which I have not)' is false modesty; 'Who'd stoop to blame this sort of trifling?' is a rhetorical question showing his pride.","'(which I have not)' ছদ্মবিনয়; 'Who'd stoop to blame…?' প্রশ্নালংকার, যা তার অহংকার প্রকাশ করে।"],
+["Prosody: heroic couplets","ছন্দ: হিরোইক কাপলেট","Iambic pentameter (five iambs per line) in rhyming couplets (aa, bb…), 28 couplets, 56 lines. Example: 'wall/call', 'hands/stands'.","আইয়ামবিক পেন্টামিটার (প্রতি লাইনে পাঁচটি আইয়াম্ব), মিলযুক্ত যুগ্মপঙ্‌ক্তি (aa, bb…); ২৮টি যুগ্মক, ৫৬ লাইন। যেমন wall/call, hands/stands।"],
+["Enjambment and caesura","এনজাম্বমেন্ট ও যতি","Sentences run over line ends, breaking the couplet rhythm so the Duke sounds like casual, controlled conversation. Mid-line pauses ('Sir, 't was not') mimic speech and calculation.","বাক্য লাইন ছাপিয়ে যায়, ফলে মিল থাকলেও কথোপকথনের স্বাভাবিকতা আসে। লাইনের মাঝের যতি ('Sir, 't was not') কথার হিসাবি ভঙ্গি ফোটায়।"]],
+hist:[
+["Browning and publication","ব্রাউনিং ও প্রকাশ","Robert Browning (1812-1889) published it in 1842 in Dramatic Lyrics (first titled 'Italy'), in the Victorian age of moral reform and fascination with the Renaissance.","রবার্ট ব্রাউনিং (১৮১২-১৮৮৯) এটি প্রকাশ করেন ১৮৪২-এ Dramatic Lyrics-এ (প্রথম নাম 'Italy'), ভিক্টোরীয় যুগে, যখন রেনেসাঁস সম্পর্কে আগ্রহ ছিল।"],
+["The historical Duke","ঐতিহাসিক ডিউক","Commonly linked to Alfonso II d'Este, Duke of Ferrara (16th century), whose young wife Lucrezia de' Medici died in 1561; he later negotiated marriage with a niece of the Count of Tyrol.","সাধারণত ষোড়শ শতকের ফেরারার ডিউক আলফোনসো দ্বিতীয় দ'এস্তের সঙ্গে যুক্ত; তাঁর তরুণী স্ত্রী লুক্রেৎসিয়া দে' মেদিচি ১৫৬১-তে মারা যান; পরে তিনি টাইরলের কাউন্টের ভাইঝির সঙ্গে বিয়ের কথা চালান।"],
+["Renaissance context","রেনেসাঁস প্রেক্ষাপট","Aristocratic marriages were political and financial deals involving dowries; patrons commissioned artists. Fra Pandolf and Claus of Innsbruck are invented.","অভিজাত বিয়ে ছিল রাজনৈতিক ও আর্থিক চুক্তি, যৌতুকসহ; ধনীরা শিল্পীদের নিয়োগ করত। ফ্রা প্যান্ডল্ফ ও ক্লাউস কাল্পনিক।"]],
+notes:[
+["Ferrara","ফেরারা","The Duke of Ferrara, the speaker; the title shows his high rank and wealth.","ফেরারার ডিউক, কবিতার বক্তা; এই নাম তার উচ্চ মর্যাদা ও সম্পদ বোঝায়।"],
+["Fra Pandolf","ফ্রা প্যান্ডল্ফ","A (probably fictional) painter named to stress the portrait's value and the Duke's wealth in hiring famous artists.","সম্ভবত কাল্পনিক চিত্রকর; নামটি ছবির মূল্য ও ডিউকের ধনসম্পদ বোঝাতে ব্যবহৃত।"],
+["Pictured countenance","চিত্রিত মুখাবয়ব","The Duchess's face in the portrait, lively 'as if she were alive'.","ছবিতে ডাচেসের মুখ, 'যেন জীবন্ত'।"],
+["The depth and passion of that earnest glance","আন্তরিক দৃষ্টির গভীরতা ও আবেগ","Her warm personality, which the Duke found troublesome because he wanted her attention for himself alone.","তার উষ্ণ ব্যক্তিত্ব, যা ডিউকের কাছে সমস্যার কারণ—সে চেয়েছিল মনোযোগ শুধু তার প্রতি থাকুক।"],
+["Durst","Durst","Dared.","সাহস করত।"],
+["Too easily impressed","সহজে মুগ্ধ","The Duke reads her friendliness and openness as disloyalty and frivolity.","ডিউক তার বন্ধুত্বপূর্ণ খোলামেলা স্বভাবকে অবিশ্বস্ততা ও চপলতা ভাবত।"],
+["My favour at her breast","বুকে আমার উপহার","Expensive jewels given by the Duke.","ডিউকের দেওয়া দামি গহনা।"],
+["Officious","Officious","Eager to please.","অতি-উৎসাহী, খুশি করতে ব্যস্ত।"],
+["My gift of a nine-hundred-years-old name","নশো বছরের পুরোনো নামের উপহার","His pride in noble lineage; he resented that she did not value it above everything.","বংশগৌরব নিয়ে অহংকার; সে ক্ষুব্ধ ছিল যে ডাচেস এটিকে সবকিছুর ওপরে মূল্য দেয়নি।"],
+["Stoop to blame","দোষ দিতে নিচু হওয়া","He would not lower himself even to criticise her generous nature.","তার উদার স্বভাবের সমালোচনা করতেও সে নিজেকে নিচু করতে রাজি ছিল না।"],
+["Forsooth","Forsooth","In fact, in truth.","আসলে, সত্যিই।"],
+["I gave commands; then all smiles stopped together","আমি আদেশ দিলাম; তখন সব হাসি একসঙ্গে থেমে গেল","Implies the Duke ordered her death: cruelty and desire for control.","ইঙ্গিত: ডিউক তার মৃত্যুর আদেশ দিয়েছিল—নিষ্ঠুরতা ও নিয়ন্ত্রণ-লিপ্সা।"],
+["Munificence","Munificence","Bounty, great generosity.","দানশীলতা, বদান্যতা।"],
+["Avowed","Avowed","Declared.","ঘোষণা করেছি।"],
+["Neptune","নেপচুন","Roman god of the sea; the Duke sees himself as powerful, taming others to his will.","রোমান সমুদ্রদেবতা; ডিউক নিজেকে ক্ষমতাবান ভাবে, অন্যকে নিজের ইচ্ছায় বশ করে।"],
+["Claus of Innsbruck","ইন্সব্রুকের ক্লাউস","An imaginary sculptor; Innsbruck is a town in Austria.","কাল্পনিক ভাস্কর; ইন্সব্রুক অস্ট্রিয়ার একটি শহর।"]],
+qa:[
+["SAQ 1. What used to bring the 'spot of joy' to the Duchess's cheek? (2)","১. ডাচেসের গালে 'spot of joy' কীসে আসত? (২)","Not only her husband's presence, but also courteous remarks, such as the painter's compliment on her mantle or the faint blush on her throat.","শুধু স্বামীর উপস্থিতি নয়, শিষ্টাচারমূলক প্রশংসাও, যেমন চিত্রকরের আলখাল্লা বা গলার হালকা লালিমা নিয়ে মন্তব্য।"],
+["SAQ 2. What does the 'rarity' (Neptune taming a sea-horse) symbolically suggest? (2)","২. 'rarity' (সমুদ্রঘোড়া বশ করা নেপচুন) প্রতীকীভাবে কী বোঝায়? (২)","The Duke's love of dominance: he 'tamed' the Duchess as Neptune tames the sea-horse, and he collects rare things, including people.","ডিউকের আধিপত্যপ্রিয়তা: নেপচুন যেমন সমুদ্রঘোড়া বশ করে, তেমনি সে ডাচেসকে 'বশ' করেছে; সে দুর্লভ বস্তুর মতো মানুষও সংগ্রহ করে।"],
+["Q3. Why was the person spoken to sent by his master? What is the master's munificence ample warrant of? What is the Duke's principal object? (2+2+2)","৩. শ্রোতাকে তাঁর প্রভু কেন পাঠিয়েছেন? প্রভুর বদান্যতা কীসের নিশ্চয়তা? ডিউকের মূল লক্ষ্য কী? (২+২+২)","The Count sent the envoy to arrange the Duke's marriage with his daughter. His known generosity is ample warrant that the Duke's just claim for a dowry will not be refused. The Duke says his principal object is the daughter herself, though the dowry talk suggests otherwise.","কাউন্ট দূতকে পাঠিয়েছেন তাঁর কন্যার সঙ্গে ডিউকের বিয়ের কথা চালাতে। তাঁর সুপরিচিত বদান্যতা নিশ্চিত করে যে যৌতুকের ন্যায্য দাবি অগ্রাহ্য হবে না। ডিউকের মতে মূল লক্ষ্য কন্যা নিজে, যদিও যৌতুকের প্রসঙ্গ অন্য ইঙ্গিত দেয়।"],
+["Q4. 'This grew, I gave commands and all smiles stopped together'—what character of the Duke is revealed? (6)","৪. 'This grew, I gave commands and all smiles stopped together'—এখানে ডিউকের কোন চরিত্র প্রকাশ পায়? (৬)","It reveals a cruel, jealous, proud and controlling man. He could not bear her equal kindness to all, would not 'stoop' to talk to her, and chose silence and a murderous order. He speaks of it calmly, which shows lack of remorse and a view of his wife as property.","এতে ডিউকের নিষ্ঠুর, ঈর্ষাপরায়ণ, অহংকারী ও নিয়ন্ত্রণকামী চরিত্র ফোটে। সবার প্রতি ডাচেসের সমান সদয়তা সে সইতে পারেনি, তার সঙ্গে কথা বলে 'নিচু' হতে চায়নি, বরং হত্যার আদেশ বেছে নিয়েছে। শান্তভাবে বলার মধ্যে অনুশোচনাহীনতা ও স্ত্রীকে সম্পত্তি ভাবার মনোভাব প্রকাশ পায়।"],
+["Broad Q5. Why is 'My Last Duchess' called a dramatic monologue?","বিস্তারিত ৫. 'My Last Duchess'-কে নাট্যস্বগতোক্তি বলা হয় কেন?","One speaker (the Duke) addresses a silent listener in a specific setting, and his speech unintentionally reveals his character; the envoy's reactions are only implied.","একজন বক্তা (ডিউক) নির্দিষ্ট স্থানে নীরব শ্রোতাকে সম্বোধন করে এবং নিজের কথায় অজান্তে চরিত্র প্রকাশ করে; দূতের প্রতিক্রিয়া শুধু ইঙ্গিতে থাকে।"],
+["Broad Q6. Discuss the significance of the title and the ending.","বিস্তারিত ৬. শিরোনাম ও সমাপ্তির তাৎপর্য আলোচনা করো।","'Last' means both 'most recent' and 'final', hinting that a new duchess is next. The ending moves from the murder to a bronze statue of Neptune, showing the Duke ready to repeat the pattern.","'Last' শব্দের অর্থ 'সর্বশেষ' ও 'আগের', ইঙ্গিত: নতুন ডাচেস আসছে। শেষে খুন থেকে নেপচুনের ব্রোঞ্জ মূর্তিতে সরে এসে বোঝানো হয় ডিউক একই ধারা পুনরাবৃত্তি করতে প্রস্তুত।"]]};
+let tab="poem",mode="both",showM=true;
+const $=s=>document.querySelector(s);
+const T=(o)=>mode=="en"?o[0]:mode=="bn"?o[1]:o[0]+" / "+o[1];
+const B=(e,b)=>mode=="en"?`<div>${e}</div>`:mode=="bn"?`<div class=bn>${b}</div>`:`<div>${e}</div><div class=bn>${b}</div>`;
+function nav(){$("#nav").innerHTML=Object.keys(TABS).map(k=>`<button class="${k==tab?"on":""}" onclick="tab='${k}';draw()">${T(TABS[k])}</button>`).join("")+`<button class=lang onclick="mode=mode=='both'?'en':mode=='en'?'bn':'both';draw()">${mode=="both"?"EN+বাং":mode=="en"?"EN":"বাং"}</button>`;$("#ttl").textContent=mode=="en"?"My Last Duchess":mode=="bn"?"মাই লাস্ট ডাচেস":"My Last Duchess · মাই লাস্ট ডাচেস";$("#sub").textContent=T(["Robert Browning · A Realm of English (B) · Class XI","রবার্ট ব্রাউনিং · এ রিয়েলম অফ ইংলিশ (বি) · একাদশ শ্রেণি"]);document.documentElement.lang=mode=="bn"?"bn":"en"}
+function word(w){return w.replace(/[^A-Za-zà-ÿ'’-]/g,"").replace(/^['’-]+|['’-]+$/g,"").toLowerCase()}
+function look(w){let k=word(w);return D[k]||D[k.replace(/'s$/,"")]||D[k.replace(/s$/,"")]||null}
+function lookE(w){let k=word(w);return E[k]||E[k.replace(/'s$/,"")]||E[k.replace(/s$/,"")]||null}
+function pop(w){const e=lookE(w)||"a simple word (see the sentence meaning)",b=look(w)||"সাধারণ শব্দ—বাক্যের অর্থ দেখুন।";return mode=="en"?`<div>${e}</div>`:mode=="bn"?`<div class=bn>${b}</div>`:`<div>${e}</div><div class=bn>${b}</div>`}
+function show(el,w){document.querySelectorAll(".sel").forEach(x=>x.classList.remove("sel"));el.classList.add("sel");const m=look(w);$("#sheet").innerHTML=`<b>${word(w)}</b>${pop(w)}<button onclick="document.getElementById('sheet').classList.remove('open')">✕</button>`;$("#sheet").classList.add("open")}
+function poem(){let h=`<div class=tools><label><input type=checkbox ${showM?"checked":""} onchange="showM=this.checked;draw()"> ${T(["Sentence meanings","বাক্যের অর্থ"])}</label></div>
+<div class=voice-bar>
+<button id=btnPlay onclick="toggleSpeech()" title="Play / Pause">▶ Listen / শুনুন</button>
+<button onclick="stopSpeech()" title="Stop">⏹ Stop</button>
+<select id=voiceSel onchange="pickVoice(this.value)" title="Choose voice"></select>
+</div>
+<p>${T(["Tap any word for its Bengali meaning. Or use Listen to hear the poem in a natural human voice.","যেকোনো শব্দে চাপ দিলে বাংলা অর্থ দেখা যাবে। অথবা Listen চাপলে মানব কণ্ঠে কবিতা শুনতে পারবেন।"])}</p>`;
+SEG.forEach((s,si)=>{h+=`<div class=seg data-seg=${si}>`+L.slice(s[0],s[1]+1).map((l,li)=>`<span class=ln data-line=${s[0]+li}>`+l.split(" ").map(tok=>(D[word(tok)]?[tok]:tok.split(/(?<=[^-])-(?=[^-])/)).map(w=>`<span class=w onclick="show(this,'${w.replace(/'/g,"\\'")}')">${w}</span>`).join("-")).join(" ")+`</span>`).join("")+(showM?`<div class=mean>${B(s[2],s[3])}</div>`:"")+`</div>`});return h}
+function list(k){return CONTENT[k].map(c=>mode=="en"?`<h3>${c[0]}</h3><div class=card>${c[2]}</div>`:mode=="bn"?`<h3 class=bn>${c[1]}</h3><div class="card bn">${c[3]}</div>`:`<h3>${c[0]} / <span class=bn>${c[1]}</span></h3><div class=card>${c[2]}<hr><div class=bn>${c[3]}</div></div>`).join("")}
+function qa(){return CONTENT.qa.map(c=>`<div class=card><h3>${T([c[0],c[1]])}</h3>${B(c[2],c[3])}</div>`).join("")}
+
+let speechOn=false, speechIdx=0, speechUtter=null, preferredVoice=null;
+function loadVoices(){
+  const sel=document.getElementById("voiceSel");
+  if(!sel) return;
+  const voices=speechSynthesis.getVoices().filter(v=>v.lang.startsWith("en")||v.lang.startsWith("bn"));
+  const prefer=["Google UK English Female","Google UK English Male","Microsoft Sonia","Microsoft Ryan","Samantha","Daniel","Karen","Moira","Google US English","Microsoft Aria","Microsoft Guy"];
+  voices.sort((a,b)=>{
+    const ai=prefer.findIndex(p=>a.name.includes(p)||a.name===p);
+    const bi=prefer.findIndex(p=>b.name.includes(p)||b.name===p);
+    return (ai===-1?99:ai)-(bi===-1?99:bi);
+  });
+  sel.innerHTML=voices.map((v,i)=>`<option value="${i}">${v.name} (${v.lang})</option>`).join("")||`<option>No voices found</option>`;
+  if(preferredVoice){
+    const idx=voices.findIndex(v=>v.name===preferredVoice.name);
+    if(idx>=0) sel.value=idx;
+  } else if(voices.length) preferredVoice=voices[0];
+}
+function pickVoice(i){
+  const voices=speechSynthesis.getVoices().filter(v=>v.lang.startsWith("en")||v.lang.startsWith("bn"));
+  preferredVoice=voices[+i]||null;
+}
+function highlightLine(n){
+  document.querySelectorAll(".ln.speaking,.seg.speaking").forEach(el=>el.classList.remove("speaking"));
+  if(n==null) return;
+  const ln=document.querySelector(`.ln[data-line="${n}"]`);
+  if(ln){ln.classList.add("speaking");ln.scrollIntoView({behavior:"smooth",block:"center"});}
+  const seg=ln&&ln.closest(".seg");
+  if(seg) seg.classList.add("speaking");
+}
+function speakNext(){
+  if(speechIdx>=L.length){stopSpeech();return;}
+  const text=L[speechIdx];
+  highlightLine(speechIdx);
+  speechUtter=new SpeechSynthesisUtterance(text);
+  speechUtter.rate=0.92;
+  speechUtter.pitch=1;
+  speechUtter.volume=1;
+  if(preferredVoice) speechUtter.voice=preferredVoice;
+  speechUtter.onend=()=>{speechIdx++;speakNext();};
+  speechUtter.onerror=()=>{speechIdx++;speakNext();};
+  speechSynthesis.speak(speechUtter);
+}
+function toggleSpeech(){
+  if(!window.speechSynthesis){alert("Speech not supported in this browser");return;}
+  if(speechOn){
+    if(speechSynthesis.paused){speechSynthesis.resume();updatePlayBtn();}
+    else{speechSynthesis.pause();updatePlayBtn(true);}
+  } else {
+    speechOn=true;
+    if(speechIdx>=L.length) speechIdx=0;
+    speakNext();
+    updatePlayBtn();
+  }
+}
+function updatePlayBtn(paused){
+  const b=document.getElementById("btnPlay");
+  if(!b) return;
+  if(!speechOn){b.textContent="▶ Listen / শুনুন";b.classList.remove("active");}
+  else if(paused||speechSynthesis.paused){b.textContent="▶ Resume";b.classList.add("active");}
+  else{b.textContent="⏸ Pause";b.classList.add("active");}
+}
+function stopSpeech(){
+  speechSynthesis.cancel();
+  speechOn=false;
+  speechIdx=0;
+  speechUtter=null;
+  highlightLine(null);
+  updatePlayBtn();
+}
+if(window.speechSynthesis){
+  speechSynthesis.onvoiceschanged=loadVoices;
+  loadVoices();
+}
+
+function draw(){stopSpeech();nav();document.getElementById("sheet").classList.remove("open");$("#app").innerHTML=`<h2>${T(TABS[tab])}</h2>`+(tab=="poem"?poem():tab=="qa"?qa():list(tab));scrollTo(0,0);if(tab=="poem")setTimeout(loadVoices,60)}
+draw();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js");
+</script></body></html>
